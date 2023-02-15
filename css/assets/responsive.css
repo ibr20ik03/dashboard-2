@@ -1,0 +1,163 @@
+/*
+    ===========================================
+
+    -> Template Name:- Phoenix - Dashboard.
+    -> Author       :- Dev :- Ibrahim Kassab.
+    -> Author URL   :- ---------------------
+    -> Version      :- 1.0
+
+    ===========================================
+*/
+
+
+/* 
+    Dashboard Responsive in [ Small & Medium & Large ]
+*/
+
+@media (min-width: 768px) {
+
+/* 
+    =================
+    = 03. Compoents = 
+    =================
+*/
+
+
+    .md-4, .lg-4 {
+        grid-column: 4 span;
+    }
+
+    .md-5, .lg-5 {
+        grid-column: 5 span;
+    }
+
+    .md-7, .lg-7 {
+        grid-column: 7 span;
+    }
+
+    .md-8, .lg-8 {
+        grid-column: 8 span;
+    }
+
+    .filter .sort-day .box a {
+        font-size: 15px;
+    }
+
+
+/* 
+    ===============
+    = 05. sidebar = 
+    ===============
+*/
+
+    aside .logo-dash .logo {
+        width: 100px;
+    }
+
+    aside nav {
+        overflow-y: hidden;
+    }
+
+    aside nav > ul > li > div {
+        justify-content: flex-start;
+    }
+
+    aside nav > ul li > .link-page a {
+        justify-content: flex-start;
+    }
+
+    aside nav > ul li > .link-page a,
+    aside nav > ul li > .btn-group .menu-link {
+        column-gap: 10px;
+        padding: 5px;
+    }
+
+    aside nav > ul li > .link-page p {
+        display: flex;
+    }
+
+    aside nav > ul li > .btn-group .menu-link p {
+        display: flex;
+        flex: 1;
+    }
+
+    aside nav > ul li > .btn-group .menu-link .down-icon {
+        display: flex;
+        align-items: center;
+    }
+
+    aside nav > ul > li > div.btn-group {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    aside nav > ul > li:hover  div.btn-group {
+        background-color: transparent;
+    }
+
+    aside nav > ul li .menu {
+        align-self: center;
+        position: static;
+        width: calc( 100% - 10px);
+    }
+
+    aside nav > ul li .menu ul {
+        position: static;
+        border-radius: 0;
+        padding: 5px;
+        width: 100%;
+    }
+
+    aside .mode-page > .mode {
+        flex-direction: row;
+        gap: 2px;
+        margin: 0 auto;
+    }
+
+    aside .mode-page > .mode > div {
+        padding: 5px 8px;
+    }
+
+    aside .mode-page > .mode > div span {
+        display: flex;
+    }
+
+    /*
+    ===================
+    = 11. ban Section = 
+    ===================
+*/
+
+.dashboard > .priv-admin .body-box .colu {
+    width: fit-content;
+}
+
+.dashboard > .priv-admin .body-box .colu:not(:last-child) {
+    border-right: 1px solid var(--black-two-color);
+    padding-right: 20px;
+    border-bottom: none;
+}
+    
+/* 
+    =====================
+    = 16. table Section = 
+    =====================
+*/
+    .cont-page .sort-date-src {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+
+    .cont-page .controle-box {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .cont-page .controle-box .left-box {
+        gap: 5px;
+    }
+
+    
+}

@@ -1,0 +1,2033 @@
+/*
+    ===========================================
+
+    -> Template Name:- Phoenix - Dashboard.
+    -> Author       :- Dev :- Ibrahim Kassab.
+    -> Author URL   :- ---------------------
+    -> Version      :- 1.0
+
+    ===========================================
+*/
+
+
+/* 
+
+==> CSS INDEX
+
+    -> 01. Variables
+    -> 02. Main Rule
+    -> 03. Components       [Filter-day, Alert, Progress, Scroll-top]
+    -> 04. load
+    -> 05. sidebar
+    -> 06. dashboard header
+    -> 07. blance section
+    -> 08. spend section
+    -> 09. Reports-1 section
+    -> 10. Reports-2 section
+    -> 11. Ban Section
+    -> 12. social section
+    -> 13. Top search section
+    -> 14. signature section
+    -> 15. login page
+    -> 16. table Section
+    -> 17. Group chat
+    -> 18. form add
+    -> 19. trash
+*/
+
+/* font-family: 'Nunito', sans-serif; */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,500;1,200;1,300;1,400;1,500&display=swap');   
+
+/* font-family: 'Inter', sans-serif; */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+/* 
+    =================
+    = 01. Variables = 
+    =================
+*/
+
+:root {
+    --blue-color: #4A5CB6;
+    --white-color: #FFFFFF;
+    --black-one-color: #111315;
+    --black-two-color: #232425;
+    --black-three-color: #414244;
+    --black-four-color: #3E4754;
+    --eee-color: #eee;
+    --success-color: #00BE10;
+    --danger-color: #D9003F;
+    --warning-color: #DE7D39;
+    --information-color: #1F66B5;
+    --font-family: 'Inter', sans-serif;
+}
+
+
+/* 
+    ==================
+    = 02. Main Rules = 
+    ==================
+*/
+
+* {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Nunito', sans-serif;
+    color: var(--white-color);
+    background-color: var(--black-one-color);
+    font-size: 16px;
+    caret-color: var(--blue-color);
+}
+
+*:focus {
+    outline: none;
+}
+
+*::selection {
+    background-color: var(--black-three-color);
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    white-space: nowrap;
+}
+
+img {
+    width: 100%;
+    height: 100%;
+}
+
+ul {
+    list-style: none;
+}
+
+::-webkit-scrollbar {
+    width: 9px;
+    height: 5px;
+}
+::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+::-webkit-scrollbar-thumb {
+    background-color: var(--blue-color);
+    border-radius: 6px;
+}
+
+
+/* 
+    =================
+    = 03. Compoents = 
+    =================
+*/
+
+#page {
+    display: grid;
+    grid-template-columns: repeat(12,1fr);
+    display: none;
+}
+
+aside {
+    grid-column: 2 span;
+}
+
+#wrapper {
+    grid-column: 10 span;
+    overflow: hidden;
+}
+
+.container-fluid {
+    width: 100%;
+    padding: 10px;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: auto;
+    gap: 10px;
+    overflow-y: scroll;
+    background-color: var(--black-three-color);
+    height: calc(100vh - 50px);
+}
+
+.sm-12 {
+    grid-column: 12 span;
+}
+
+.s-12 {
+    grid-column: 12 span;
+}
+
+.section {
+    background-color: var(--black-one-color);
+    padding: 10px;
+    border-radius: 8px;
+}
+
+
+.filter .sort-day {
+    display: flex;
+    gap: 10px;
+}
+
+.filter .sort-day .box {
+    background-color: var(--black-three-color);
+    padding: 2px 5px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.filter .sort-day .box:hover {
+    background-color: var(--blue-color);
+}
+
+.filter .sort-day .box a {
+    font-size: 12px;
+}
+
+.filter .sort-day .box.active {
+    background-color: var(--blue-color) !important;
+}
+
+.container-fluid input[type="text"] {
+    border-radius: 6px;
+    border: none;
+    outline: none;
+    background-color: var(--black-three-color);
+}
+
+.prog {
+    width: 110px;
+    height: 20px;
+    background-color: var(--black-three-color);
+    border-radius: 6px;
+    font-size: 13px;
+    overflow: hidden;
+    color: var(--black-three-color);
+}
+
+.prog span.prog-active {
+    width: 0%;
+    background-color: var(--blue-color);
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    transition: all 1s;
+}
+
+.alert {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    top: -100%;
+    left: 0%;
+    z-index: 1000000;
+    transition: all 0.9s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.alert .content-box {
+    width: 350px;
+    background-color: var(--black-three-color);
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    user-select: none;
+    border-radius: 6px;
+    box-shadow: 0px 0px 10px var(--black-one-color);
+}
+
+.alert .content-box > div:not(:last-child) {
+    border-bottom: 1px solid var(--black-one-color);
+}
+
+.alert .content-box .box-head {
+    display: flex;
+    justify-content: space-between;
+}
+
+.alert .content-box .box-head .alert-text p {
+    color: var(--warning-color);
+    font-size: 17px;
+}
+
+.alert .content-box .box-head .close button {
+    border: none;
+    outline: none;
+    background-color: transparent;
+    color: var(--black-two-color);
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.alert .content-box .box-head .close button:hover {
+    color: var(--danger-color);
+}
+
+.alert .content-box .box-body {
+    min-height: 50px;
+    padding-top: 5px;
+    font-size: 15px;
+    font-family: var(--font-family);
+    color: var(--black-one-color);
+}
+
+.alert .content-box .box-body p {
+    text-indent: 10px;
+}
+
+.alert .content-box .box-foot  {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    height: fit-content;
+    padding-top: 10px;
+}
+
+.alert .content-box .box-foot .btn-act {
+    height: 30px;
+    padding: 0px 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 6px;
+    border: none;
+    outline: none;
+    color: #fff;
+    font-size: 17px;
+    cursor: pointer;
+}
+
+.alert .content-box .box-foot .btn-act:hover {
+    background-color: var(--black-two-color);
+}
+
+.alert .content-box .box-foot .cansle > button {
+    background-color: var(--information-color);
+}
+
+.alert .content-box .box-foot .ok-action > a {
+    background-color: var(--danger-color);
+}
+
+.alert .content-box .box-foot .ok-mo-trash a {
+    background-color: var(--blue-color);
+}
+
+.alert textarea {
+    width: 100%;
+    height: 150px;
+    background-color: var(--black-two-color);
+    border: none;
+    outline: none;
+    padding: 5px;
+    color: var(--black-three-color);
+    resize: none;
+}
+
+.scroll-top {
+    position: fixed;
+    right: 50px;
+    bottom: 100px;
+    background-color: var(--blue-color);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-size: 18px;
+    box-shadow: 0px 0px 10px var(--black-three-color);
+    opacity: 0.9;
+}
+
+/* 
+    ============
+    = 04. load = 
+    ============
+*/
+
+#load {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#load .load-wrapp {
+    float: left;
+    width: 100px;
+    height: 100px;
+    margin: 0 10px 10px 0;
+    padding: 20px 20px 20px;
+    border-radius: 5px;
+    text-align: center;
+    background-color: transparent;
+}
+
+#load .load-wrapp .spinner {
+    position: relative;
+    width: 45px;
+    height: 45px;
+    margin: 0 auto;
+}
+
+#load .load-wrapp .bubble-1,
+#load .load-wrapp .bubble-2 {
+    position: absolute;
+    top: 0;
+    width: 25px;
+    height: 25px;
+    border-radius: 100%;
+    background-color: var(--blue-color);
+}
+
+#load .load-wrapp .bubble-2 {
+    top: auto;
+    bottom: 0;
+}
+
+#load .load-wrapp .load .spinner {
+    animation: loadingI 1.7s linear infinite;
+}
+#load .load-wrapp .load .bubble-1,
+#load .load-wrapp .load .bubble-2 {
+    animation: bounce 1.7s ease-in-out infinite;
+}
+#load .load-wrapp .load .bubble-2 {
+    animation-delay: -1s;
+}
+
+
+
+/* 
+    ===============
+    = 05. sidebar = 
+    ===============
+*/
+
+aside {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    height: 100vh;
+    padding: 10px 0px 10px 10px;
+}
+
+aside .logo-dash {
+    display: flex;
+    justify-content: center;
+    padding: 5px 0px 20px 0px;
+}
+
+aside .logo-dash .logo {
+    width: 70px;
+}
+
+
+aside nav {
+    flex: 1;
+}
+
+aside nav > ul {
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+}
+
+aside nav > ul i {
+    font-size: 18px;
+}
+
+aside nav > ul > li > div.active {
+    background-color: var(--black-three-color);
+    cursor: pointer;
+    border-radius: 10px 0px 0px 10px;
+}
+
+aside nav > ul > li > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+aside nav > ul li > .link-page a {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+aside nav > ul li > .link-page p {
+    display: none;
+}
+
+aside nav > ul li > .btn-group {
+    position: relative;
+}
+
+aside nav > ul li > .btn-group .menu-link  {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    cursor: pointer;
+}
+
+aside nav > ul li > .btn-group .menu-link p {
+    display: none;
+}
+
+aside nav > ul li > .btn-group .menu-link .down-icon {
+    display: none;
+}
+
+aside nav > ul li .menu {
+    display: none;
+    position: absolute;
+    left: 100%;
+    z-index: 1000;
+}
+
+aside nav > ul li .menu ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--black-two-color);
+    padding: 10px;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    gap: 5px;
+}
+
+aside nav > ul li .menu ul li > a {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;        
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+aside nav > ul li .menu ul li.active {
+    background-color: var(--black-three-color);
+}
+
+aside .mode-page {
+    display: flex;
+    justify-content: center;
+}
+
+aside .mode-page > .mode {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--black-two-color);
+    padding: 2px;
+    border-radius: 18px;
+    gap: 2px;
+    cursor: pointer;
+}
+
+aside .mode-page > .mode > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 25px;
+    font-size: 14px;
+    padding: 9px;
+    width: 100%;
+    gap: 5px;
+    color: var(--black-three-color);
+}
+
+aside .mode-page > .mode > div.active,
+aside .mode-page > .mode > div:hover {
+    background-color: var(--black-one-color);
+    color: var(--white-color);
+}
+
+aside .mode-page > .mode > div span {
+    font-family: var(--font-family) ;
+    display: none;
+}
+
+
+
+/* 
+    ========================
+    = 06. dashboard header = 
+    ========================
+*/
+
+#wrapper header {
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px;
+    height: 50px;
+    position: sticky;
+    top: 0;
+    box-shadow: 0px 0px 10px var(--black-one-color);
+}
+
+#wrapper header .contr-acount {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+#wrapper header .contr-acount i:hover {
+    color: var(--black-three-color);
+    cursor: pointer;
+}
+
+#wrapper header .contr-acount .photo-profile {
+    width: 30px;
+    height: 30px;
+    overflow: hidden;
+}
+
+#wrapper header .contr-acount .bill {
+    position: relative;
+}
+
+#wrapper header .contr-acount .bill > span {
+    position: absolute;
+    background-color: var(--blue-color);
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    font-size: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: -8px;
+    right: -10px;
+    font-family: var(--font-family);
+    z-index: 2;
+    user-select: none;
+}
+
+#wrapper header .contr-acount .bill a > i {
+    transform: rotate(10deg);
+}
+
+/* #wrapper .container-fluid {
+    background-color: var(--black-three-color);
+    height: calc(100vh - 50px);
+} */
+
+/*
+    ======================
+    = 07. blance section = 
+    ======================
+*/
+
+.dashboard {
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.dashboard > section {
+    display: flex;
+    flex-direction: column;
+    user-select: none;
+}
+
+.dashboard > section .heading {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--black-two-color);
+}
+
+.dashboard > section .heading p:first-child {
+    font-size: 16px;
+    color: var(--black-three-color);
+}
+
+.dashboard > section .content {
+    display: flex;
+    justify-content: space-between;
+}
+
+.dashboard > section .content .head-box {
+    padding: 2px 0px;
+    color: var(--black-three-color);
+}
+
+/*
+    =====================
+    = 08. spend section = 
+    =====================
+*/
+
+.dashboard > section .schema  {
+    display: flex;
+    flex-direction: column;
+}
+
+.dashboard > section .schema .cont-box {
+    display: flex;
+    flex-direction: column;
+}
+
+.dashboard > section .schema .cont-box .head-box {
+    display: flex;
+    justify-content: space-between;
+    color: var(--black-three-color);
+    padding: 2px 0px;
+}
+
+.dashboard > section .schema .cont-box .body-box {
+    display: flex;
+    justify-content: space-between;
+}
+
+.dashboard > section .schema .cont-box .body-box > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.dashboard > section .schema .cont-box .foot-box {
+    display: flex;
+    justify-content: space-between;
+    color: var(--black-three-color);
+    padding: 2px 0px;
+    gap: 10px;
+    align-items: center;
+}
+
+.dashboard > section .schema .cont-box .foot-box .prog {
+    flex: 1;
+}
+
+/*
+    =========================
+    = 09. Reports-1 section = 
+    =========================
+*/
+
+.dashboard > section .filter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--black-two-color);
+}
+
+
+/*
+    =========================
+    = 10. Reports-2 section = 
+    =========================
+*/
+.dashboard > section .card {
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(150px,1fr));
+    gap: 10px;
+    padding: 10px 0px;
+}
+
+.dashboard > section .card .box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--black-two-color);
+    padding: 10px;
+    border-radius: 6px;
+    font-size: 18px;
+    font-family: var(--font-family);
+    cursor: pointer;
+}
+
+.dashboard > section .card .box:hover {
+    background-color: var(--black-three-color);
+}
+
+.dashboard > section .card .box p {
+    white-space: nowrap;
+}
+
+
+/*
+    ===================
+    = 11. ban Section = 
+    ===================
+*/
+.dashboard > .priv-admin .head-box {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--black-two-color);
+}
+
+.dashboard > .priv-admin .head-box p:first-child {
+    font-size: 16px;
+    color: var(--black-three-color);
+}
+
+.dashboard > .priv-admin .body-box {
+    display: flex;
+    padding-top: 10px;
+    gap: 20px;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.dashboard > .priv-admin .body-box .colu {
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    width: 100%;
+}
+
+.dashboard > .priv-admin .body-box .colu:not(:last-child) {
+    border-bottom: 1px solid var(--black-two-color);
+}
+
+.dashboard > .priv-admin .body-box .colu .item:first-child {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 10px;
+}
+
+.dashboard > .priv-admin .body-box .colu .item:first-child label {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+.dashboard > .priv-admin .body-box .colu .item:nth-child(2) label {
+    display: flex;
+}
+
+.dashboard > .priv-admin .body-box .colu .item:nth-child(2) input {
+    padding: 5px;
+    flex: 1;
+
+}
+
+.dashboard > .priv-admin .body-box .colu .item:nth-child(3) {
+    max-height: 200px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    padding: 0px 2px 0px 10px;
+}
+
+.dashboard > .priv-admin .body-box .colu .item:nth-child(3) ul li label {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* 
+    ======================
+    = 12. Social section = 
+    ======================
+*/
+
+.dashboard .social-media > .head-box {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--black-two-color);
+}
+
+.dashboard > .social-media .head-box p:first-child {
+    font-size: 16px;
+    color: var(--black-three-color);
+}
+
+.dashboard .social-media .socil-box {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding-top: 10px;
+}
+
+.dashboard .social-media .socil-box .soci-item {
+    display: flex;
+    justify-content: space-between;
+}
+
+.dashboard .social-media .socil-box div.icon {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dashboard .social-media .socil-box div.text {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dashboard .social-media .socil-box div.btn-con {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+}
+.dashboard .social-media .socil-box div.btn-con p {
+    padding: 2px 10px;
+    border-radius: 6px;
+}
+
+.dashboard .social-media .socil-box .facebook {
+    background-color: rgb(66 103 178 / 50%);
+}
+
+.dashboard .social-media .socil-box .facebook div.icon,
+.dashboard .social-media .socil-box .facebook div.btn-con p {
+    background-color: rgb(66 103 178);
+}
+
+.dashboard .social-media .socil-box .instagram {
+    background-color: rgb(64 114 156 / 50%);
+}
+
+.dashboard .social-media .socil-box .instagram div.icon,
+.dashboard .social-media .socil-box .instagram div.btn-con p {
+    background-color: rgb(64 114 156);
+}
+
+.dashboard .social-media .socil-box .twitter {
+    background-color: rgb(29 161 242 / 50%);
+}
+
+.dashboard .social-media .socil-box .twitter div.icon,
+.dashboard .social-media .socil-box .twitter div.btn-con p {
+    background-color: rgb(29 161 242);
+}
+
+.dashboard .social-media .socil-box .linkedin {
+    background-color: rgb(0 119 181 / 50%);
+}
+
+.dashboard .social-media .socil-box .linkedin div.icon,
+.dashboard .social-media .socil-box .linkedin div.btn-con p {
+    background-color: rgb(0 119 181);
+}
+
+.dashboard .social-media .socil-box .tiktok {
+    background-color: rgb(105 201 208 / 50%);
+}
+
+.dashboard .social-media .socil-box .tiktok div.icon,
+.dashboard .social-media .socil-box .tiktok div.btn-con p {
+    background-color: rgb(105 201 208);
+}
+
+
+
+/* 
+    ==========================
+    = 13. Top search section = 
+    ==========================
+*/
+
+.dashboard .top-search .box-head {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--black-two-color);
+    color: var(--black-two-color);
+}
+
+.dashboard .top-search .con {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 5px;
+}
+
+.dashboard .top-search .product-search  {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding-top: 10px;
+}
+
+.dashboard .top-search .product-search .sear-item {
+    display: flex;
+    justify-content: space-between;
+}
+
+.dashboard .top-search .product-search .sear-item > span {
+    background-color: var(--black-three-color);
+    padding: 2px 5px;
+    border-radius: 4px;
+}
+
+/* 
+    ==========================
+    = 14. signature section = 
+    ==========================
+*/
+.dashboard .signature .box-head {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--black-two-color);
+    color: var(--black-two-color);
+}
+
+.dashboard .signature .box-body {
+    padding-top: 10px;
+}
+
+.dashboard .signature .box-body ul {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.dashboard .signature .box-body ul > li {
+    display: flex;
+    justify-content: space-between;
+    background-color: var(--black-three-color);
+    padding: 2px 5px;
+    border-radius: 6px;
+}
+
+.dashboard .signature .box-body ul > li > p {
+    max-width: 250px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.dashboard .signature .box-body ul > li > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.dashboard .signature .box-body ul > li > div > i {
+    color: var(--success-color);
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.dashboard .signature .box-body ul > li > div p {
+    background-color: var(--blue-color);
+    padding: 2px 5px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+/* 
+    ==================
+    = 15. login page = 
+    ==================
+*/
+
+.login-page {
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(to 45deg,var(--black-one-color), var(--black-two-color));
+}
+
+.login-page .logo {
+    width: 150px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, calc(-50% - 241px));
+}
+
+.login-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 400px;
+    padding: 40px;
+    transform: translate(-50%, -50%);
+    background: var(--black-two-color);
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(0,0,0,.6);
+    border-radius: 10px;
+}
+
+.login-box h2 {
+margin: 0 0 30px;
+padding: 0;
+color: #fff;
+text-align: center;
+}
+
+.login-box .user-box {
+position: relative;
+}
+
+.login-box .user-box input {
+width: 100%;
+padding: 10px 0;
+font-size: 16px;
+color: #fff;
+margin-bottom: 30px;
+border: none;
+border-bottom: 1px solid #fff;
+outline: none;
+background: transparent;
+}
+.login-box .user-box label {
+position: absolute;
+top:0;
+left: 0;
+padding: 10px 0;
+font-size: 16px;
+color: #fff;
+pointer-events: none;
+transition: .5s;
+}
+
+.login-box .user-box input:focus ~ label,
+.login-box .user-box input:valid ~ label {
+top: -20px;
+left: 0;
+color: var(--blue-color);
+font-size: 14px;
+}
+
+.login-box form a {
+position: relative;
+display: inline-block;
+padding: 10px 20px;
+color: var(--blue-color);
+font-size: 16px;
+text-decoration: none;
+text-transform: uppercase;
+overflow: hidden;
+transition: .5s;
+margin-top: 40px;
+letter-spacing: 4px
+}
+
+.login-box a:hover {
+background: var(--blue-color);
+color: #fff;
+border-radius: 5px;
+}
+
+.login-box a span {
+position: absolute;
+display: block;
+}
+
+.login-box a span:nth-child(1) {
+top: 0;
+left: -100%;
+width: 100%;
+height: 2px;
+background: linear-gradient(90deg, transparent, var(--blue-color));
+animation: btn-anim1 1s linear infinite;
+}
+
+.login-box a span:nth-child(2) {
+top: -100%;
+right: 0;
+width: 2px;
+height: 100%;
+background: linear-gradient(180deg, transparent, var(--blue-color));
+animation: btn-anim2 1s linear infinite;
+animation-delay: .25s
+}
+
+.login-box a span:nth-child(3) {
+bottom: 0;
+right: -100%;
+width: 100%;
+height: 2px;
+background: linear-gradient(270deg, transparent, var(--blue-color));
+animation: btn-anim3 1s linear infinite;
+animation-delay: .5s
+}
+
+.login-box a span:nth-child(4) {
+bottom: -100%;
+left: 0;
+width: 2px;
+height: 100%;
+background: linear-gradient(360deg, transparent, var(--blue-color));
+animation: btn-anim4 1s linear infinite;
+animation-delay: .75s
+}
+
+
+/* 
+    ======================
+    = 16. tables section = 
+    ======================
+*/
+
+.cont-page {
+    background-color: var(--black-one-color);
+    padding: 10px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: calc(100vh - 70px);
+    overflow: hidden;
+}
+
+.cont-page .sort-date-src {
+    display: flex;
+    flex-direction: column;
+}
+
+.cont-page .sort-date-src .search form label {
+    position: relative;
+    color: var(--black-one-color);
+}
+
+.cont-page .sort-date-src .search form label i {
+    position: absolute;
+    z-index: 2;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 3px;
+}
+
+.cont-page .sort-date-src .search form label input[type="text"] {
+    padding: 3px 5px 3px 24px;
+}
+
+.cont-page .sort-date-src .date form label input[type="date"] {
+    border-radius: 6px;
+    border: none;
+    outline: none;
+    background-color: var(--black-three-color);
+    padding: 3px;
+}
+
+.cont-page .controle-box {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.cont-page .controle-box .left-box {
+    display: flex;
+    justify-content: space-between;
+}
+
+.cont-page .controle-box .left-box .add-new a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    background-color: var(--blue-color);
+    padding: 2px 15px;
+    border-radius: 6px;
+}
+
+.cont-page .controle-box .left-box .remove-all a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    background-color: var(--black-three-color);
+    padding: 2px 15px;
+    border-radius: 6px;
+}
+
+.cont-page .controle-box .right-box a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    background-color: var(--black-three-color);
+    padding: 2px 15px;
+    border-radius: 6px;
+}
+
+.cont-page .controle-box .left-box .remove-all a:hover,
+.cont-page .controle-box .right-box a:hover {
+    background-color: var(--black-two-color);
+}
+
+
+.cont-page .controle-box .right-box span.profi-sal {
+    color: var(--information-color);
+}
+
+.responsive-table {
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+.responsive-table table {
+    min-width: 1000px;
+    width: 100%;
+    text-align: left;
+    border-spacing: 0;
+    padding-top: 5px;
+}
+
+.responsive-table table tr td {
+    padding: 10px;
+    align-items: center;
+}
+
+.responsive-table table thead tr {
+    background-color: var(--black-two-color);
+}
+
+.responsive-table table thead tr td {
+    white-space: nowrap;
+}
+
+.responsive-table table tbody tr:nth-of-type(even) {
+    background-color: var(--black-two-color);
+}
+
+
+.responsive-table table thead tr > td .box {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+}
+
+.responsive-table table thead tr > td .icon-sort {
+    font-size: 14px;
+    display: flex;
+}
+
+.responsive-table table thead tr > td .icon-sort i {
+    cursor: pointer;
+}
+
+.responsive-table table thead tr > td .icon-sort i:hover {
+    color: var(--black-three-color);
+}
+
+.responsive-table table tbody tr td {
+    white-space: nowrap;
+}
+
+.responsive-table table tbody tr > td.name {
+    white-space: nowrap;
+}
+
+.responsive-table table tbody tr > td .img {
+    width: 50px;
+    height: 50px;
+    overflow: hidden;
+    border-radius: 4px;
+}
+
+.responsive-table table tbody tr > td .rate i  {
+    font-size: 12px;
+}
+
+.responsive-table table tbody tr > td .controle {
+    display: flex;
+    gap: 20px;
+}
+
+.responsive-table table tbody tr > td .controle .btn-delete i {
+    color: var(--danger-color);
+    cursor: pointer;
+}
+
+.responsive-table table tbody tr > td .controle .btn-edit i {
+    color: var(--blue-color);
+    cursor: pointer;
+}
+
+.responsive-table table tbody tr > td .controle .btn-barcode i {
+    color: var(--information-color);
+    cursor: pointer;
+}
+
+.responsive-table table tbody tr > td .Signature {
+    background-color: var(--white-color);
+    width: 100px;
+    height: 30px;
+}
+
+.responsive-table table tbody tr > td.price {
+    color: var(--blue-color);
+}
+
+.responsive-table table tbody tr > td.sale {
+    color: var(--success-color);
+}
+
+.responsive-table table tbody tr > td.quan-pro {
+    color: var(--danger-color);
+}
+
+.responsive-table table tbody tr > td.priv {
+    color: var(--success-color);
+}
+
+.responsive-table table tbody tr > td.concat > div {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.responsive-table table tbody tr > td.concat > div > a > i {
+    color: var(--blue-color);
+    font-size: 18px;
+}
+
+.responsive-table table tbody tr > td p.num-unr {
+    background-color: var(--blue-color);
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    font-size: 14px;
+}
+
+.responsive-table table tbody tr > td p.msg {
+    max-width: 220px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.responsive-table table tbody tr > td .controle .btn-ban {
+    color: var(--black-three-color);
+}
+
+.responsive-table table tbody tr > td .controle .btn-ban.active {
+    color: var(--danger-color);
+}
+
+.responsive-table table tbody tr > td p.don-pro {
+    color: var(--success-color);
+}
+
+.responsive-table table tbody tr > td p.nodon-pro {
+    color: var(--warning-color);
+}
+
+.responsive-table table tbody tr > td .controle .btn-print i {
+    color: var(--information-color);
+    cursor: pointer;
+}
+
+.responsive-table table tbody tr > td p.repo-da {
+    color: var(--warning-color);
+}
+
+.responsive-table table tbody tr > td p.price-pro-sal,
+.responsive-table table tbody tr > td p.price-spen-sal {
+    color: var(--information-color);
+}
+
+.responsive-table table tbody tr > td .profi-pro-sal {
+    color: var(--success-color);
+}
+
+.responsive-table table tbody tr > td .loss-pro-sal {
+    color: var(--danger-color);
+}
+
+.responsive-table table tbody tr > td .controle .btn-telph i {
+    color: var(--warning-color);
+}
+
+.responsive-table table tbody tr > td .controle .btn-mailto i {
+    color: var(--blue-color);
+}
+
+.responsive-table table tbody tr > td .controle .btn-restor i {
+    color: var(--warning-color);
+}
+
+.cont-page .enter-nupage {
+    display: flex;
+    justify-content: flex-end;
+    gap: 20px;
+    font-size: 15px;
+    border-top: 1px solid var(--black-three-color);
+    padding-top: 5px;
+}
+
+.cont-page .enter-nupage .total-page {
+    display: flex;
+    gap: 8px;
+}
+
+.cont-page .enter-nupage .total-page .icon {
+    display: flex;
+    gap: 10px;
+}
+
+.cont-page .enter-nupage .total-page .icon .num-page {
+    display: flex;
+    gap: 10px;
+}
+
+.cont-page .enter-nupage .go-to form label {
+    display: flex;
+    gap: 5px;
+}
+
+.cont-page .enter-nupage .go-to form label input[type="text"] {
+    width: 50px;
+    padding: 5px;
+}
+
+/* 
+    ==================
+    = 17. group chat = 
+    ==================
+*/
+
+.grop-chat .key-room {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.grop-chat .key-room .form {
+    background-color: var(--black-two-color);
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.grop-chat .key-room .form form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    min-height: 160px;
+    min-width: 290px;
+}
+
+.grop-chat .key-room .form form label:first-child > input {
+    background-color: transparent;
+    border-bottom: 1px solid var(--black-three-color);
+    border-radius: 0px;
+    padding: 2px 0px;
+    color: var(--black-three-color);
+    font-family: var(--font-family);
+    height: 40px;
+}
+
+.grop-chat .key-room .form form label:first-child > input::placeholder {
+    font-size: 14px;
+}
+
+.grop-chat .key-room .form form div:last-child {
+    padding: 3px 20px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 10px;
+    font-size: 20px;
+    width: 100%;
+}
+
+.grop-chat .key-room .form form div:last-child > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    color: var(--fa-font-brands);
+    border-radius: 6px;
+    padding: 2px 5px;
+    cursor: pointer;
+    width: fit-content;
+    height: 40px;
+}
+
+.grop-chat .key-room .form form div:last-child > div input {
+    border: none;
+    outline: none;
+    background-color: inherit;
+    color: inherit;
+    cursor: inherit;
+}
+
+.grop-chat .key-room .form form div:last-child > div.crea-room {
+    background-color: var(--success-color);
+}
+
+.grop-chat .key-room .form form div:last-child > div.go-room {
+    background-color: var(--blue-color);
+}
+
+.grop-chat .chat {
+    background-color: var(--black-one-color);
+    padding: 10px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: calc(100vh - 70px);
+    overflow: hidden;
+}
+
+.grop-chat .chat .chat-head {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--black-three-color);
+    align-items: center;
+}
+
+.grop-chat .chat .chat-head .account-name {
+    display: flex;
+    flex-direction: column;
+}
+
+.grop-chat .chat .chat-head .account-name .priv {
+    font-size: 14px;
+    color: var(--success-color);
+}
+
+.grop-chat .chat .chat-head .call-vi {
+    display: flex;
+    gap: 10px;
+}
+
+.grop-chat .chat .chat-head .call-vi > div {
+    background-color: var(--black-three-color);
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.grop-chat .chat .chat-body {
+    flex: 1;
+    height: calc(100vh - 189px);
+    overflow-y: scroll;
+    padding-right: 10px;
+}
+
+.chat-body ul {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.chat-body ul li.author {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.chat-body ul li {
+    display: flex;
+}
+
+.chat-body ul li.me {
+    justify-content: flex-end;
+}
+
+.chat-body ul li.me > div {
+    align-items: flex-end;
+}
+
+.chat-body ul li > div {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 80%;
+}
+
+.chat-body ul li > div .user-details {
+    display: flex;
+    gap: 20px;
+}
+
+.chat-body ul li.me > div .user-details {
+    flex-direction: row-reverse;
+}
+
+.chat-body ul li > div .user-details p.name {
+    color: var(--warning-color);
+}
+
+.chat-body ul li.me > div .user-details p.name {
+    color: var(--blue-color);
+}
+
+.chat-body ul li > div .user-details p.time {
+    color: var(--black-four-color);
+}
+
+.chat-body ul li > div .msg-text {
+    margin-left: 10px;
+    background-color: var(--black-two-color);
+    width: fit-content;
+    padding: 2px 10px;
+    border-radius: 9px;
+}
+
+.chat-body ul li > div .msg-img {
+    padding-left: 10px;
+    display: flex;
+    gap: 2px;
+    flex-wrap: wrap;
+}
+
+.chat-body ul li > div .msg-img .img {
+    width: 120px;
+    height: 120px;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.chat-body ul li > div .msg-video {
+    padding-left: 10px;
+    display: flex;
+    gap: 2px;
+    flex-wrap: wrap;
+}
+
+.chat-body ul li > div .msg-video .video {
+    width: 150px;
+    height: 100px;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.chat-body ul li > div .msg-video video {
+    width: 100%;
+    height: 100%;
+}
+
+.chat-body ul li > div .msg-file {
+    padding-left: 10px;
+}
+
+.chat-body ul li > div .msg-file .file {
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background-color: var(--black-two-color);
+    padding: 0px 10px;
+    border-radius: 8px;
+}
+
+.chat-body ul li > div .msg-file .file .icon {
+    color: var(--blue-color);
+    font-size: 30px;
+}
+
+.chat-body ul li > div .msg-file .file .content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+.grop-chat .chat .chat-foot {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 2px 0px;
+    background-color: var(--black-one-color);
+}
+
+.grop-chat .chat .chat-foot > div {
+    position: relative;
+}
+
+.grop-chat .chat .chat-foot > div .menu {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: flex-start;
+    background-color: var(--black-three-color);
+    position: absolute;
+    bottom: 36px;
+    padding: 5px 10px;
+    border-radius: 4px;
+    display: none;
+}
+
+.grop-chat .chat .chat-foot > div .menu form > label {
+    display: flex;
+    gap: 7px;
+    cursor: pointer;
+    font-size: 18px;
+    flex: 1;
+}
+
+.grop-chat .chat .chat-foot > div .menu form > label:hover {
+    color: var(--blue-color);
+}
+
+.grop-chat .chat .chat-foot > div .menu > div {
+    width: 100%;
+}
+
+.grop-chat .chat .chat-foot > div .menu > div:not(:last-child) form > label {
+    border-bottom: 1px solid var(--black-one-color);
+}
+
+
+.grop-chat .chat .chat-foot .upload {
+    background-color: var(--black-three-color);
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.grop-chat .chat .chat-foot .text-msg {
+    flex: 1;
+}
+
+.grop-chat .chat .chat-foot .text-msg form label {
+    display: flex;
+}
+
+.grop-chat .chat .chat-foot .text-msg form label input {
+    width: 100%;
+    height: 30px;
+    border-radius: 30px;
+    padding: 5px 18px;
+}
+
+
+.grop-chat .chat .chat-foot .recor-msg > div {
+    background-color: var(--blue-color);
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    cursor: pointer;
+    transform: all 0.9s;
+}
+
+.grop-chat .chat .chat-foot .recor-msg > div.record {
+    display: flex;
+}
+
+.grop-chat .chat .chat-foot .recor-msg > div.send-msg {
+    display: none;
+}
+
+
+/* 
+    ================
+    = 18. Form add = 
+    ================
+*/
+
+.new-cust {
+    background-color: var(--black-one-color);
+    padding: 10px;
+    border-radius: 8px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.new-cust .bac-page > div a {
+    display: flex;
+    gap: 7px;
+    align-items: center;
+    color: var(--black-two-color);
+    font-size: 17px;
+    cursor: pointer;
+    padding-bottom: 10px;
+}
+
+.new-cust .form form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.new-cust .form form label {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.new-cust .form form .pho-pro {
+    width: fit-content;
+    pointer-events: none;
+}
+.new-cust .form form label .img {
+    max-width: 300px;
+    min-width: 280px;
+    height: 150px;
+    border: none;
+    background-color: var(--black-three-color);
+    position: relative;
+}
+
+.new-cust .form form label .img i {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    font-size: 32px;
+    color: var(--blue-color);
+    cursor: pointer;
+    pointer-events: all;
+}
+
+.new-cust .form form .colo-size {
+    display: flex;
+    width: 100%;
+    gap: 10px;
+}
+
+.new-cust .form form .colo-size > div {
+    flex: 0.5;
+}
+
+.new-cust .form form .colo-size > .colo-produ {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.new-cust .form form .colo-size > .colo-produ > div {
+    display: flex;
+    gap: 8px;
+}
+
+.new-cust .form form .colo-size > .colo-produ > div p {
+    white-space: nowrap;
+}
+
+.new-cust .form form .colo-size > .colo-produ > div > div.color {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+.new-cust .form form .colo-size > .colo-produ > div input[type="text"] {
+    padding: 6px;
+    width: 100px;
+}
+
+.new-cust .form form label input {
+    width: 100%;
+    height: 35px;
+    border-radius: 3px;
+    padding: 5px;
+    background-color: var(--black-two-color);
+    border: none;
+    outline: none;
+}
+
+.new-cust .form form label.passord-s {
+    position: relative;
+}
+
+.new-cust .form form label.passord-s span.swap-pass {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    cursor: pointer;
+}
+
+.new-cust .form form label.passord-s span.swap-pass i.hide-pass {
+    display: none;
+}
+
+.new-cust .form form label select {
+    width: 100%;
+    height: 35px;
+    border-radius: 3px;
+    padding: 5px;
+    background-color: var(--black-two-color);
+    border: none;
+    color: var(--black-three-color);
+}
+
+.new-cust .form form .subm-btn {
+    display: flex;
+    justify-content: center;
+}
+
+.new-cust .form form .subm-btn > label {
+    display: flex;
+    flex-direction: row;
+}
+
+.new-cust .form form label .btn-add-new {
+    background-color: var(--blue-color);
+    color: var(--white-color);
+    padding: 5px 10px;
+    border-radius: 7px;
+    cursor: pointer;
+    margin-top: 50px;
+    display: flex;
+    align-items: center;
+}
+
+.new-cust .form form label .btn-add-new input {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    color: var(--white-color);
+    cursor: pointer;
+}
+
+
+/* 
+    =============
+    = 19. trash = 
+    =============
+*/
+
+.trash > section {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--black-one-color);
+    padding: 10px;
+    border-radius: 8px;
+    user-select: none;
+    gap: 10px;
+}
+
+.trash > section article .cont-page {
+    display: none;
+    height: fit-content;
+}
+
+.trash .box .head-box {
+    display: flex;
+    justify-content: space-between;
+    background-color: var(--black-three-color);
+    padding: 10px;
+    cursor: pointer;
+}
